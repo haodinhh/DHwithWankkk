@@ -1,0 +1,1008 @@
+/* ===== CSS Variables ===== */
+:root {
+    --primary-white: #FFFFFF;
+    --pastel-pink-1: #FFE5EC;
+    --pastel-pink-2: #FFD6E0;
+    --pastel-pink-3: #FFC2D1;
+    --pastel-pink-4: #FFB3C6;
+    --text-dark: #4A4A4A;
+    --text-light: #6B6B6B;
+    --shadow-light: rgba(255, 182, 193, 0.3);
+    --shadow-medium: rgba(255, 182, 193, 0.5);
+    --gradient-1: linear-gradient(135deg, #FFE5EC 0%, #FFC2D1 100%);
+    --gradient-2: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 229, 236, 0.9));
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--gradient-1);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ===== Timeline Container ===== */
+.timeline-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== Page Sections ===== */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(100%) scale(0.95);
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+        opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+        filter 0.7s ease;
+    background: var(--gradient-2);
+    transform-origin: center center;
+    filter: blur(0px);
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    z-index: 10;
+    filter: blur(0px);
+}
+
+.page.prev {
+    transform: translateY(-100%) scale(0.95);
+    opacity: 0;
+    filter: blur(3px);
+    z-index: 5;
+}
+
+.page.next {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+    filter: blur(3px);
+    z-index: 5;
+}
+
+.content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* ===== Typography ===== */
+.title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px var(--shadow-light);
+    letter-spacing: 2px;
+}
+
+.script-font {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: var(--pastel-pink-4);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+}
+
+.message {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+/* ===== Page 1 - Hello ===== */
+.main-image-container {
+    margin: 2rem auto;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px var(--shadow-medium);
+    border: 3px solid var(--primary-white);
+    animation-delay: 0.2s;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.05);
+}
+
+.welcome-message {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-top: 2rem;
+    line-height: 1.8;
+    animation-delay: 0.4s;
+    text-align: center;
+}
+
+.heart-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--pastel-pink-3);
+    transform: rotate(45deg);
+    animation: float 6s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+.floating-heart::before,
+.floating-heart::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--pastel-pink-3);
+    border-radius: 50%;
+}
+
+.floating-heart::before {
+    top: -15px;
+    left: 0;
+}
+
+.floating-heart::after {
+    top: 0;
+    left: -15px;
+}
+
+.floating-heart:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    top: 60%;
+    left: 70%;
+    animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+    top: 40%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+/* ===== Page 2 - Valentine ===== */
+.decorative-line {
+    width: 200px;
+    height: 3px;
+    background: var(--gradient-1);
+    margin: 2rem auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* ===== Pages 3-5 - Locations ===== */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.single-location-container {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.location-card-map {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px var(--shadow-medium);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--pastel-pink-2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-card-map:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 70px var(--shadow-medium);
+}
+
+.location-card-map .location-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.backup-label {
+    font-size: 0.95rem;
+    color: var(--pastel-pink-4);
+    font-weight: 400;
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+}
+
+.consideration-label {
+    font-size: 0.95rem;
+    color: var(--pastel-pink-4);
+    font-weight: 400;
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+}
+
+.map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+}
+
+.location-address {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* Original location card styles (for pages 4-5) */
+.location-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px var(--shadow-medium);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--pastel-pink-2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-10px);
+}
+
+.location-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-1);
+}
+
+.location-number {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--pastel-pink-1);
+    opacity: 0.5;
+}
+
+.location-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.location-icon {
+    font-size: 4rem;
+    margin: 1.5rem 0;
+    filter: drop-shadow(0 4px 8px var(--shadow-light));
+}
+
+.location-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin: 2rem 0;
+}
+
+.location-time {
+    display: inline-block;
+    background: var(--pastel-pink-1);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+/* ===== Page 6 - Final ===== */
+.heart-big {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    animation: heartbeat 2s infinite;
+    filter: drop-shadow(0 4px 12px var(--shadow-medium));
+}
+
+.final-message {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem;
+    border-radius: 25px;
+    margin: 2rem 0;
+    box-shadow: 0 15px 40px var(--shadow-light);
+    border: 2px solid var(--pastel-pink-2);
+}
+
+.hope-text,
+.promise-text {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: var(--text-dark);
+    margin: 1.5rem 0;
+}
+
+.divider {
+    font-size: 2rem;
+    color: var(--pastel-pink-4);
+    margin: 2rem 0;
+}
+
+.signature {
+    margin-top: 3rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--pastel-pink-4);
+}
+
+.date {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* ===== Navigation ===== */
+.navigation {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem 1rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px var(--shadow-medium);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--pastel-pink-2);
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--pastel-pink-3);
+    background: var(--primary-white);
+    color: var(--pastel-pink-4);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--pastel-pink-3);
+    color: var(--primary-white);
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px var(--shadow-medium);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--pastel-pink-2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: var(--pastel-pink-4);
+    height: 30px;
+    border-radius: 6px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(45deg) translateY(-30px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: rotate(-45deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-45deg) translateY(10px);
+    }
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.05);
+    }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .script-font {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .location-card-map {
+        padding: 1.5rem;
+    }
+
+    .location-card-map .location-title {
+        font-size: 1.5rem;
+    }
+
+    .map-container iframe {
+        height: 250px;
+    }
+
+    .location-address {
+        font-size: 1rem;
+    }
+
+    .title {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .main-image-container {
+        max-width: 400px;
+        margin: 1.5rem auto;
+    }
+
+    .welcome-message {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+    }
+
+    .script-font {
+        font-size: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .message {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .location-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .location-number {
+        font-size: 3rem;
+        top: 15px;
+        right: 20px;
+    }
+
+    .location-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .location-icon {
+        font-size: 3rem;
+        margin: 1rem 0;
+    }
+
+    .location-description {
+        font-size: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .location-time {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem;
+    }
+
+    .final-message {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem 1rem;
+    }
+
+    .hope-text,
+    .promise-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .heart-big {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .signature {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .date {
+        font-size: 1rem;
+    }
+
+    .navigation {
+        right: 1rem;
+        padding: 1.2rem 0.8rem;
+        gap: 1.2rem;
+    }
+
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .indicator.active {
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Mobile-first optimizations */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .locations-grid {
+        gap: 1rem;
+        margin: 0.8rem auto;
+        padding: 0 0.5rem;
+    }
+
+    .single-location-container {
+        max-width: 100%;
+        margin: 1rem auto;
+        padding: 0 0.5rem;
+    }
+
+    .location-card-map {
+        padding: 1rem;
+        border-radius: 20px;
+    }
+
+    .location-card-map .location-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    .map-container {
+        margin: 1rem 0;
+        border-radius: 12px;
+        min-height: 200px;
+    }
+
+    .map-container iframe {
+        height: 200px;
+    }
+
+    .location-address {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding: 0 0.5rem;
+    }
+
+    .backup-label,
+    .consideration-label {
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .title {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .main-image-container {
+        max-width: 320px;
+        margin: 1.2rem auto;
+        border-radius: 15px;
+    }
+
+    .welcome-message {
+        font-size: 1rem;
+        margin-top: 1.2rem;
+    }
+
+    .script-font {
+        font-size: 2.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .message {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .content {
+        padding: 1rem 0.5rem;
+        max-width: 100%;
+    }
+
+    .location-card {
+        padding: 1.8rem 1.2rem;
+        margin: 0 0.8rem;
+        border-radius: 20px;
+    }
+
+    .location-number {
+        font-size: 2.5rem;
+        top: 10px;
+        right: 15px;
+    }
+
+    .location-title {
+        font-size: 1.5rem;
+    }
+
+    .location-icon {
+        font-size: 2.5rem;
+        margin: 0.8rem 0;
+    }
+
+    .location-description {
+        font-size: 0.9rem;
+        margin: 1.2rem 0;
+    }
+
+    .location-time {
+        font-size: 0.85rem;
+        padding: 0.5rem 1.2rem;
+    }
+
+    .final-message {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0.8rem;
+        border-radius: 20px;
+    }
+
+    .hope-text,
+    .promise-text {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 1rem 0;
+    }
+
+    .divider {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .heart-big {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .signature {
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+    }
+
+    .date {
+        font-size: 0.9rem;
+    }
+
+    .decorative-line {
+        width: 150px;
+        height: 2px;
+        margin: 1.5rem auto;
+    }
+
+    .navigation {
+        right: 0.5rem;
+        padding: 0.8rem 0.5rem;
+        gap: 0.8rem;
+        border-radius: 40px;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        /* Larger touch target for mobile */
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+        /* Larger touch target */
+        position: relative;
+    }
+
+    .indicator::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+    }
+
+    .indicator.active {
+        height: 22px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    /* Extra small mobile devices */
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .main-image-container {
+        max-width: 95%;
+        margin: 0.8rem auto;
+        border-radius: 12px;
+    }
+
+    .welcome-message {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding: 0 0.3rem;
+    }
+
+    .script-font {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+
+    .message {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .content {
+        padding: 0.8rem 0.3rem;
+    }
+
+    .location-card-map {
+        padding: 0.8rem;
+        border-radius: 15px;
+    }
+
+    .location-card-map .location-title {
+        font-size: 1.1rem;
+    }
+
+    .map-container iframe {
+        height: 180px;
+    }
+
+    .location-address {
+        font-size: 0.8rem;
+    }
+
+    .location-card {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .location-title {
+        font-size: 1.2rem;
+    }
+
+    .final-message {
+        padding: 1.2rem 0.8rem;
+        margin: 0.8rem 0.3rem;
+    }
+
+    .hope-text {
+        font-size: 0.85rem;
+    }
+
+    .signature {
+        font-size: 1.1rem;
+        margin-top: 1.2rem;
+    }
+
+    .date {
+        font-size: 0.85rem;
+    }
+
+    .decorative-line {
+        width: 120px;
+        margin: 1.2rem auto;
+    }
+
+    .navigation {
+        right: 0.3rem;
+        padding: 0.6rem 0.4rem;
+        gap: 0.6rem;
+    }
+
+    .nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .indicator.active {
+        height: 18px;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .content {
+        padding: 0.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .script-font {
+        font-size: 2.2rem;
+    }
+
+    .navigation {
+        padding: 0.5rem 0.4rem;
+        gap: 0.5rem;
+    }
+
+    .main-image-container {
+        max-width: 300px;
+        margin: 0.5rem auto;
+    }
+
+    .final-message,
+    .location-card-map {
+        padding: 1rem;
+        margin: 0.5rem auto;
+    }
+}
